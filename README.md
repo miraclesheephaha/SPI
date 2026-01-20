@@ -20,5 +20,12 @@ TPM(Trusted Plaform Module，信賴平台模組)：一顆專門負責密碼編�
 > Flash Descriptor像整個Flash的地圖。PCH硬體在電力開啟後的幾微秒內，讀取Region0且必須位於the first sector of device0 (offset 0).為了要讓PCH知道Flash的容量、頻率等。  
 > Device 0(第一個晶片)：接兩顆Flash (CS0與CS1)，Descriptor必須放在CS0的最開頭。   
 > Intel ME Region在現代Intel架構中，ME是系統啟動的先遣部隊，必須比CPU更早開始運作。  
-> Regions can extend across multiple components, but must be contiguous.  
+> Regions can extend across multiple components, but must be contiguous.
 
+**Flash區域大小**  
+SPI Flash的空間需求因平台的配置而異，Flash空間的實際消耗量取決於Flash元件的Erase Granularity，以及平台對Intel ME與BIOS區域的須求。  
+Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能的韌體。  
+> Erase Granularity：SPI Flash最小的抹除單位通常是4KB (Sector)。即便資料量只有 100 位元組，它也必須佔用一個完整的 4 KB 區塊，因為 SPI Flash 無法單獨抹除比這更小的單位。
+> GbE(2個4KB區塊)：Intel 整合式網卡區域（GbE Region）通常需要 8 KB，分為主要（Main）與備援（Backup）存儲空間。
+> Intel ME Region：空間消耗大。視功能而定（例如 1.5 MB 的輕量版或是 5 MB 以上的企業版 AMT），此區域的大小變動最大。
+> Intel Active Management Technology (AMT)：這是 Intel 針對商用電腦設計的遠端管理技術，包含在 ME 韌體中。
