@@ -14,3 +14,11 @@ TPM(Trusted Plaform Module，信賴平台模組)：一顆專門負責密碼編�
 
 5. SPI Master IN Slave OUT (MISO)：
 > master設備輸入/slave設備輸出：slave模式發送數據，master模式下接收數據
+
+## SPI Flash Regions
+**Flash Descriptor 與 Intel Manegement Engine是必須具備的區域**  
+> Flash Descriptor像整個Flash的地圖。PCH硬體在電力開啟後的幾微秒內，讀取Region0且必須位於the first sector of device0 (offset 0).為了要讓PCH知道Flash的容量、頻率等。
+> Device 0(第一個晶片)：接兩顆Flash (CS0與CS1)，Descriptor必須放在CS0的最開頭。  
+> Intel ME Region在現代Intel架構中，ME是系統啟動的先遣部隊，必須比CPU更早開始運作。
+> Regions can extend across multiple components, but must be contiguous.
+
