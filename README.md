@@ -40,7 +40,8 @@ Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能�
 * **Descriptor Map**包含了五個descriptor sections的指標以及每個區段的大小。
 * **Componenet Section**包含系統中關於SPI Flash的資訊，組件(晶片)數量、每個組件的容量密度、無效指令(chip erase)，以及讀取、快速讀取與寫入抹除指令所使用的頻率。
 * **Region Section**指向其他三個區域，並包含每個區域的大小。
-* **Master Region**包含快閃記憶體的安全設定，負責授予每個區域的讀取與寫入權限，並透過請求者ID(Requestor ID)來辨識各個主控者(Master)。
+* **Master Region**包含快閃記憶體的安全設定，負責授予每個區域的讀取與寫入權限，並透過請求者ID(Requestor ID)來辨識各個主控者(Master)。  
+  > 可辨識四種主控者：BIOS、Gigabit Ethernet（GbE）、管理引擎（Management Engine, ME）以及嵌入式控制器（EC）。每個主控者僅被允許對其主要區域進行直接讀取。  
 * 處理器(processor)與**PCH Soft Strap**區段包含了處理器與PCH的可配置參數。
   > 什麼是 Soft Straps？
   > 在數位電路中，「Strap」原本是指硬體上的拉高（Pull-up）或拉低（Pull-down）電阻，用來在通電瞬間決定硬體的工作模式（例如：設定這顆晶片是要當主機還是從屬）。
