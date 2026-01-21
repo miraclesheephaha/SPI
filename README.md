@@ -16,7 +16,7 @@ TPM(Trusted Plaform Module，信賴平台模組)：一顆專門負責密碼編�
 > master設備輸入/slave設備輸出：slave模式發送數據，master模式下接收數據
 
 ## Descriptor Mode  
-> Descriptor Mode是PCH所有型號(SKU)的必要條件，系統不支援Non-Descriptor Mode。
+> Descriptor Mode是PCH所有型號(SKU)的必要條件，系統不支援Non-Descriptor Mode。  
 > **SKU (Stock Keeping Unit)** 是指不同等級的的晶片組(消費級、商用級)，無論用哪種等級的南橋，全部都必須使用Descriptor Mode
 ## SPI Flash Regions
 **Flash Descriptor 與 Intel Manegement Engine是必須具備的區域**  
@@ -34,4 +34,6 @@ Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能�
 > Intel Active Management Technology (AMT)：這是 Intel 針對商用電腦設計的遠端管理技術，包含在 ME 韌體中。
 
 **Flash Descriptor Regions**  
-* Flash Signature用於選擇Descriptor mode
+<img width="465" height="686" alt="image" src="https://github.com/user-attachments/assets/d090fa7d-ccdb-482b-8ac1-4508995929aa" />
+
+* Flash Signature用於選擇Descriptor mode，同時驗證快閃記憶體是否programmed(燒錄)且運作正常。位於快閃記憶體底部offset 10h資料必須為0FF0A55Ah，系統才會進入Descriptor mode。
