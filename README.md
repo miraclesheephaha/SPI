@@ -1,5 +1,5 @@
 # SPI Introduction
-**SPI interface 可用三組chp select signals, 兩個flash設備與一個TPM設備連接至PCH**
+**SPI interface 可用三組chp select signals, 分別是兩個flash設備與一個TPM設備連接至PCH**
 ## Signal Description
 1. SPI CLK：可用於common flash/TPM interface.支援17MHz,30MHz與40MHz.
 2. SPI FLASH Chip Select 0：用於select the primary SPI Flash device. 此訊號除了SPI Flash之外不能用於任何其他類型設備。
@@ -15,6 +15,9 @@ TPM(Trusted Plaform Module，信賴平台模組)：一顆專門負責密碼編�
 5. SPI Master IN Slave OUT (MISO)：
 > master設備輸入/slave設備輸出：slave模式發送數據，master模式下接收數據
 
+## Descriptor Mode  
+> Descriptor Mode是PCH所有型號(SKU)的必要條件，系統不支援Non-Descriptor Mode。
+> **SKU (Stock Keeping Unit)** 是指不同等級的的晶片組(消費級、商用級)，無論用哪種等級的南橋，全部都必須使用Descriptor Mode
 ## SPI Flash Regions
 **Flash Descriptor 與 Intel Manegement Engine是必須具備的區域**  
 > Flash Descriptor像整個Flash的地圖。PCH硬體在電力開啟後的幾微秒內，讀取Region0且必須位於the first sector of device0 (offset 0).為了要讓PCH知道Flash的容量、頻率等。  
@@ -28,4 +31,7 @@ Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能�
 > Erase Granularity：SPI Flash最小的抹除單位通常是4KB (Sector)。即便資料量只有 100 位元組，它也必須佔用一個完整的 4 KB 區塊，因為 SPI Flash 無法單獨抹除比這更小的單位。  
 > GbE(2個4KB區塊)：Intel 整合式網卡區域（GbE Region）通常需要 8 KB，分為主要（Main）與備援（Backup）存儲空間。  
 > Intel ME Region：空間消耗大。視功能而定（例如 1.5 MB 的輕量版或是 5 MB 以上的企業版 AMT），此區域的大小變動最大。  
-> Intel Active Management Technology (AMT)：這是 Intel 針對商用電腦設計的遠端管理技術，包含在 ME 韌體中。  
+> Intel Active Management Technology (AMT)：這是 Intel 針對商用電腦設計的遠端管理技術，包含在 ME 韌體中。
+
+**Flash Descriptor Regions**  
+* Flash Signature用於選擇Descriptor mode
