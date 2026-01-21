@@ -36,18 +36,22 @@ Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能�
 **Flash Descriptor Regions**  
 <img width="465" height="686" alt="image" src="https://github.com/user-attachments/assets/d090fa7d-ccdb-482b-8ac1-4508995929aa" />
 
-* Flash Signature用於選擇Descriptor mode，同時驗證快閃記憶體是否programmed(燒錄)且運作正常。位於快閃記憶體底部offset 10h資料必須為0FF0A55Ah，系統才會進入Descriptor mode。
-* Descriptor Map包含了五個descriptor sections的指標以及每個區段的大小。
-* Componenet Section包含系統中關於SPI Flash的資訊，組件(晶片)數量、每個組件的容量密度、無效指令(chip erase)，以及讀取、快速讀取與寫入抹除指令所使用的頻率。
-* Region Section指向其他三個區域，並包含每個區域的大小。
-* Master Region包含快閃記憶體的安全設定，負責授予每個區域的讀取與寫入權限，並透過請求者ID(Requestor ID)來辨識各個主控者(Master)。
-* 處理器(processor)與PCH Soft Strap區段包含了處理器與PCH的可配置參數。
+* **Flash Signature**用於選擇Descriptor mode，同時驗證快閃記憶體是否programmed(燒錄)且運作正常。位於快閃記憶體底部offset 10h資料必須為0FF0A55Ah，系統才會進入Descriptor mode。
+* **Descriptor Map**包含了五個descriptor sections的指標以及每個區段的大小。
+* **Componenet Section**包含系統中關於SPI Flash的資訊，組件(晶片)數量、每個組件的容量密度、無效指令(chip erase)，以及讀取、快速讀取與寫入抹除指令所使用的頻率。
+* **Region Section**指向其他三個區域，並包含每個區域的大小。
+* **Master Region**包含快閃記憶體的安全設定，負責授予每個區域的讀取與寫入權限，並透過請求者ID(Requestor ID)來辨識各個主控者(Master)。
+* 處理器(processor)與**PCH Soft Strap**區段包含了處理器與PCH的可配置參數。
   > 什麼是 Soft Straps？
   > 在數位電路中，「Strap」原本是指硬體上的拉高（Pull-up）或拉低（Pull-down）電阻，用來在通電瞬間決定硬體的工作模式（例如：設定這顆晶片是要當主機還是從屬）。
-* Descriptor Upper MAP determines(決定了)Management Engine VSCC Table(管理引擎虛擬系統組件特性表)的長度與基準位置。
-  > Management Engine VSCC Table包含了該NVM映像檔(NVM Image)所支援的所有SPI Flash的JEDEC ID以及VSCC相關資訊
-     > 什麼是 JEDEC ID？
-     > 每個 SPI Flash 製造商（如 Winbond, Macronix, Micron）都會為其產品申請一個唯一的識別碼，稱為 JEDEC ID。
+* **Descriptor Upper MAP** determines(決定了)Management Engine VSCC Table(管理引擎虛擬系統組件特性表)的長度與基準位置。
+  > Management Engine VSCC Table包含了該NVM映像檔(NVM Image)所支援的所有SPI Flash的JEDEC ID以及VSCC相關資訊  
+     > 什麼是 JEDEC ID？  
+     > 每個 SPI Flash 製造商（如 Winbond, Macronix, Micron）都會為其產品申請一個唯一的識別碼，稱為 JEDEC ID。  
      > NVM Image是什麼？
+     > 這裡的 NVM Image（Non-Volatile Memory Image）指的就是你燒錄進 Flash 的那個完整的 .bin 檔案。這個映像檔內含了描述符、ME 韌體、BIOS 等。
+* **OEM Section** 是預留在(Flash Descriptor)最頂部的256Bytes，專供原始設備製造商(OEM，如華碩、戴爾等)使用。
+  > 常見的用途 (OEM Usage)：資產標籤 (Asset Tags)大型企業（如 Dell, HP）會在此處寫入公司內部的管理編號。
+
 
   
