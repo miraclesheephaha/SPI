@@ -37,3 +37,9 @@ Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能�
 <img width="465" height="686" alt="image" src="https://github.com/user-attachments/assets/d090fa7d-ccdb-482b-8ac1-4508995929aa" />
 
 * Flash Signature用於選擇Descriptor mode，同時驗證快閃記憶體是否programmed(燒錄)且運作正常。位於快閃記憶體底部offset 10h資料必須為0FF0A55Ah，系統才會進入Descriptor mode。
+* Descriptor Map包含了五個descriptor sections的指標以及每個區段的大小。
+* Componenet Section包含系統中關於SPI Flash的資訊，組件(晶片)數量、每個組件的容量密度、無效指令(chip erase)，以及讀取、快速讀取與寫入抹除指令所使用的頻率。
+* Region Section指向其他三個區域，並包含每個區域的大小。
+* Master Region包含快閃記憶體的安全設定，負責授予每個區域的讀取與寫入權限，並透過請求者ID(Requestor ID)來辨識各個主控者(Master)。
+* 處理器(processor)與PCH Soft Strap區段包含了處理器與PCH的可配置參數。
+  
