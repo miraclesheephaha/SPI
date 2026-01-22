@@ -1,5 +1,6 @@
 # SPI Introduction
-**SPI interface 可用三組chp select signals, 分別是兩個flash設備與一個TPM設備連接至PCH**
+**SPI interface 可用三組chp select signals, 分別是兩個flash設備與一個TPM設備連接至PCH**  
+**SPI是PCH與Flash之間傳送資料的通道，PCH(MASTER)下達指令，FLASH(SLAVE)負責儲存資料(BIOS)**  
 ## Signal Description
 1. SPI CLK：可用於common flash/TPM interface.支援17MHz,30MHz與40MHz.
 2. SPI FLASH Chip Select 0：用於select the primary SPI Flash device. 此訊號除了SPI Flash之外不能用於任何其他類型設備。
