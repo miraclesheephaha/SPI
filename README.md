@@ -55,5 +55,8 @@ Intel ME Region包含支援Intel主動管理技術(AMT)及其他Intel ME功能�
 * **OEM Section** 是預留在(Flash Descriptor)最頂部的256Bytes，專供原始設備製造商(OEM，如華碩、戴爾等)使用。
   > 常見的用途 (OEM Usage)：資產標籤 (Asset Tags)大型企業（如 Dell, HP）會在此處寫入公司內部的管理編號。
 
+<img width="946" height="464" alt="image" src="https://github.com/user-attachments/assets/593b9301-2d1d-48da-8287-e74b64a2d8ea" />
+
+
 
   
